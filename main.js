@@ -150,46 +150,69 @@ const habitaciones = [
 habitaciones.push({ id: 4, habitacion: "Cuadruple", precio: 400, disponibilidad: 3 }); //Agregando otro objeto mas con push
 
 const carrito = [];
+const precioTotal = () => carrito.reduce((acc, elem) => acc + elem.precio, 0);
+
+let habitacionesFiltradas = [];
+
+//Bienvenida
 
 console.log("Bienvenidos a Hotel-Hansa")
 
+let preguntar = false;
+//pregunta si quiere alquilar
 let alquiler = prompt("Deaseas alquilar una habitacion?");
 
-if (alquiler == "null") {
-    alert("No seleccionaste ninguna Habitacion");
 
+while (!preguntar) {
+    if (alquiler == "") {
+        alert("No seleccionaste ninguna Habitacion");
+        alquiler = prompt("Deaseas alquilar una habitacion?");
+    }
+    else {
+        preguntar = true;
+    }
+    alquiler.toLowerCase();
 }
 
-alquiler.toLowerCase
+
 
 if (alquiler == "si") {
 
-    let filtrar = prompt("Deseas filtrar por precio? si/no").toLowerCase
+    let filtrar = prompt("Deseas filtrar por precio? si/no").toLowerCase//filtrar por precio
 
     if (filtrar = "si") {
         let precio = Number(
             prompt("Ingrese el precio que deseas filtrar"));
 
-        const habitacionesFiltradas = filtrarPrecio(precio);
+        habitacionesFiltradas = [];
+        habitacionesFiltradas = filtrarPrecio(precio);
+
         console.log(habitacionesFiltradas);
     }
 
-    let eleccionHabitacion = " ";
+    //elegir Habitacion
+    let eleccionHabitacion = "";
 
     while (eleccionHabitacion != "no".toLowerCase) {
 
+        let textoAMostrar = '';
+
+        for (let i = 0; i < habitacionesFiltradas.length; i++) {
+            textoAMostrar += `Digite ${i + 1} para alquilar Habitacion ${habitacionesFiltradas[i].habitacion}\n`;
+        }
+
+
+
+
         eleccionHabitacion = prompt(`
-        ¿Que habitaciones deseas Alquilar?
+      ¿Que habitaciones deseas Alquilar?
 
-        Para dejar de alquilar, escribe no
+      Para dejar de alquilar, escribe no
 
-        Digite 1 para alquilar Habitacion Simple
-        Digite 2 para alquilar Habitacion Doble
-        Digite 3 para alquilar Habitacion Triple
-        Digite 4 para alquilar Habitacion Cuadruple
-        `  );
+     ${textoAMostrar}`);
 
         if (eleccionHabitacion == null) {
+            console.log('No quisiste alquilar ninguna habitacion. Vuelva pronto, o volve a empzar..')
             break;
         };
 
@@ -199,22 +222,26 @@ if (alquiler == "si") {
 
         agregarHabitacionAlCarrito(parseInt(eleccionHabitacion));
 
-        console.log(agregarHabitacionAlCarrito)
-
-
     };
 
 
     function agregarHabitacionAlCarrito(id) {
         let habitacion = habitaciones.find(habitacion => habitacion.id === id);
 
+        carrito.push(habitacion);
+        console.log(`Este es tu carrito hasta el momento:\n`, carrito);
+        console.log(precioTotal());
+        //return habitacion.precio;
     }
 
-
     function filtrarPrecio(precio) {
-        let filtrados = habitaciones.filter(habitacion => habitaciones.precio >= precio);
+        let filtrados = habitaciones.filter(habitacion => habitacion.precio <= precio);
         return filtrados;
     }
 
+    function filtrarPrecio(precio) {
+        return habitaciones.filter(habitacion => habitacion.precio <= precio);
+    }
 
-}
+
+};
