@@ -63,30 +63,158 @@
 
 
 //Entrega Arrays
-console.log("Bienvenidos a Hotel-Hansa")
+// console.log("Bienvenidos a Hotel-Hansa");
 
-const habitaciones =[
-{
-    habitacion:"Simple",  //objeto1
-    precio: 100
-},
-{
-    habitacion:"Doble", //objeto2
-    precio: 200
-},
-{
-    habitacion:"Triple",    //objeto3
-    precio: 300
-}
+
+// const habitaciones =[
+// {
+//     id:1,
+//     habitacion:"Simple",  //objeto1
+//     precio: 100,
+//     disponibilidad: 4
+// },
+// {
+//     id:2,
+//     habitacion:"Doble", //objeto2
+//     precio: 200,
+//     disponibilidad: 2
+// },
+// {
+//     id:3,
+//     habitacion:"Triple",    //objeto3
+//     precio: 300,
+//     disponibilidad: 1
+// }
+// ];
+
+//habitaciones.push({id:4, habitacion:"Cuadruple", precio:400, disponibilidad: 3}); //Agregando otro objeto mas con push
+
+// for (const habitacion of habitaciones){
+//     console.log(habitacion.habitacion);//para ver los valores de Habitaciones en cada objeto
+//     console.log(habitacion.precio);//para ver los valores de los precios en cada objeto
+// }
+
+
+
+// console.log(habitaciones.filter(habitacion => habitacion.precio <= 200));//Hace un filtro de todas las habitaciones con un precio menor e igual a 200
+// console.log(habitaciones.length); //para ver cuantos elementos hay
+// console.log(habitaciones);//ver objetos dentro del Arrays
+
+
+// //para ver las habitaciones y precios
+
+// const todasHabitaciones = [ ];
+// const todosPrecios = [ ];
+
+
+// habitaciones.forEach( (habitacion => {
+//     todasHabitaciones.push(habitacion.habitacion);
+// }) );
+
+// habitaciones.forEach((habitacion => {
+//     todosPrecios.push(habitacion.precio);
+// }) );
+
+
+
+// console.log(todasHabitaciones)
+// console.log(todosPrecios)
+
+
+//Trabajo primera entrega
+
+
+
+
+const habitaciones = [
+    {
+        id: 1,
+        habitacion: "Simple",  //objeto1
+        precio: 100,
+        disponibilidad: 4
+    },
+    {
+        id: 2,
+        habitacion: "Doble", //objeto2
+        precio: 200,
+        disponibilidad: 2
+    },
+    {
+        id: 3,
+        habitacion: "Triple",    //objeto3
+        precio: 300,
+        disponibilidad: 1
+    }
 ];
 
-habitaciones.push({habitacion:"Cuadruple", precio:400}); //Agregando otro objeto mas con push
+habitaciones.push({ id: 4, habitacion: "Cuadruple", precio: 400, disponibilidad: 3 }); //Agregando otro objeto mas con push
 
-for (const habitacion of habitaciones){
-    console.log(habitacion.habitacion);//para ver los valores de Habitaciones en cada objeto
-    console.log(habitacion.precio);//para ver los valores de los precios en cada objeto
+const carrito = [];
+
+console.log("Bienvenidos a Hotel-Hansa")
+
+let alquiler = prompt("Deaseas alquilar una habitacion?");
+
+if (alquiler == "null") {
+    alert("No seleccionaste ninguna Habitacion");
+
 }
 
+alquiler.toLowerCase
 
-console.log(habitaciones.length); //para ver cuantos elementos hay
-console.log(habitaciones);//ver objetos dentro del Arrays
+if (alquiler == "si") {
+
+    let filtrar = prompt("Deseas filtrar por precio? si/no").toLowerCase
+
+    if (filtrar = "si") {
+        let precio = Number(
+            prompt("Ingrese el precio que deseas filtrar"));
+
+        const habitacionesFiltradas = filtrarPrecio(precio);
+        console.log(habitacionesFiltradas);
+    }
+
+    let eleccionHabitacion = " ";
+
+    while (eleccionHabitacion != "no".toLowerCase) {
+
+        eleccionHabitacion = prompt(`
+        ¿Que habitaciones deseas Alquilar?
+
+        Para dejar de alquilar, escribe no
+
+        Digite 1 para alquilar Habitacion Simple
+        Digite 2 para alquilar Habitacion Doble
+        Digite 3 para alquilar Habitacion Triple
+        Digite 4 para alquilar Habitacion Cuadruple
+        `  );
+
+        if (eleccionHabitacion == null) {
+            break;
+        };
+
+        if (eleccionHabitacion == "no".toLowerCase) {
+            alert("Gracias por Visistarnos")
+        };
+
+        agregarHabitacionAlCarrito(parseInt(eleccionHabitacion));
+
+        console.log(agregarHabitacionAlCarrito)
+
+
+    };
+
+
+    function agregarHabitacionAlCarrito(id) {
+        let habitacion = habitaciones.find(habitacion => habitacion.id === id);
+
+    }
+
+
+    function filtrarPrecio(precio) {
+        let filtrados = habitaciones.filter(habitacion => habitaciones.precio >= precio);
+        return filtrados;
+    }
+
+
+}
