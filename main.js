@@ -275,7 +275,7 @@ const mostrarHabitaciones = () => {
 
         div.classList.add("card");//agregar en cada obejto la clase card
         div.innerHTML = `<div class="card-image">
-                            <img src= ${habitacion.img}>
+                            <img src= ${habitacion.img} width="200px">
                             <p>Habitacion: ${habitacion.habitacion} </p>
                             <p>Precio: ${habitacion.precio}</p>
                         </div>
