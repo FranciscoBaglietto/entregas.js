@@ -250,41 +250,63 @@
 
 //-------------------------------------------------------------
 
-//Desafio complementario DOM
+// //Desafio complementario DOM
 
-//llamamos al h3 con id titulo1
+// //llamamos al h3 con id titulo1
 
-let titulo = document.getElementById("titulo1");
+// let titulo = document.getElementById("titulo1");
 
-//pedimos al usuario su nombre
+// //pedimos al usuario su nombre
 
-const nombreUsuario = prompt("Binevenido! Ingrese su nombre: ");
+// const nombreUsuario = prompt("Binevenido! Ingrese su nombre: ");
 
-titulo.innerText= "Hola "+nombreUsuario+" Bienvenido a Hotel Hansa !";
-
-
-
-//Creamos una funcion para mostrar los Habitaciones
+// titulo.innerText = "Hola " + nombreUsuario + " Bienvenido a Hotel Hansa !";
 
 
-const mostrarHabitaciones = () => {
-    const contenedor = document.getElementById("contenedor-habitaciones"); // seleccionamos dentro de html el main 
 
-    habitaciones.forEach( habitacion => {//quiero recorrer los elemento del array Habitaciones
-        const div = document.createElement("div");//quiero crear un elemento div
+// //Creamos una funcion para mostrar los Habitaciones
 
-        div.classList.add("card");//agregar en cada obejto la clase card
-        div.innerHTML = `<div class="card-image">
-                            <img src= ${habitacion.img} width="200px">
-                            <p>Habitacion: ${habitacion.habitacion} </p>
-                            <p>Precio: ${habitacion.precio}</p>
-                        </div>
-                    `;
-        contenedor.appendChild(div) //llamamos que el div sea hijo del contendor           
-    });
+
+// const mostrarHabitaciones = () => {
+//     const contenedor = document.getElementById("contenedor-habitaciones"); // seleccionamos dentro de html el main 
+
+//     habitaciones.forEach(habitacion => {//quiero recorrer los elemento del array Habitaciones
+//         const div = document.createElement("div");//quiero crear un elemento div
+
+//         div.classList.add("card");//agregar en cada obejto la clase card
+//         div.innerHTML = `<div class="card-image">
+//                             <img src= ${habitacion.img} width="200px">
+//                             <p>Habitacion: ${habitacion.habitacion} </p>
+//                             <p>Precio: ${habitacion.precio}</p>
+//                         </div>
+//                     `;
+//         contenedor.appendChild(div) //llamamos que el div sea hijo del contendor           
+//     });
+// }
+
+// //llamamos a la funcion
+
+// mostrarHabitaciones()
+
+
+
+//----------------------
+//entrega eventos
+
+const formulario = document.getElementById("formulario");//para llamar al form
+
+formulario.addEventListener("submit", validarFormulario)//un evento con una funcion, escuchamos un event submit
+
+function validarFormulario(e) { //objeto de un evento
+    e.preventDefault();//prevenir el comportamiento por defecto
+    let form = e.target;
+
+    let nombre = form.children[0].value//quiero saber el primer hijo del for seria nombre
+    let edad = form.children[1].value//quiero saber el segundo del for seria nombre
+    let email = form.children[2].value//quiero saber el tercer hijo del for seria nombre
+
+    console.log(nombre);
+    console.log(edad);
+    console.log(email);
+
 }
-
-//llamamos a la funcion
-
-mostrarHabitaciones()
-
